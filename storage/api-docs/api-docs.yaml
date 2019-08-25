@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: 'Booking assistant'
+  description: 'helping you book your appointments with your teams'
+  contact:
+    email: info@hamzamostafa.me
+  version: '0.1'
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  /calendars:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: 'App\Http\Controllers\CalendarController::index'
+      parameters:
+        -
+          name: orderBy
+          in: query
+          required: false
+          allowEmptyValue: true
+      responses:
+        200:
+          description: 'should recive the full data paginated'
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: 'App\Http\Controllers\CalendarController::store'
+      responses:
+        200:
+          description: 'a simple description inside the specific controller'
+        404:
+          description: error
