@@ -4,19 +4,33 @@
 namespace App\Models;
 
 use App\Models\ApiModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Calendar extends ApiModel
 {
 
-    public function owner(){
+    /**
+     * @return BelongsTo
+     */
+    public function owner(): BelongsTo
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function appointments(){
+    /**
+     * @return HasMany
+     */
+    public function appointments(): HasMany
+    {
         return $this->hasMany(Appointment::class);
     }
 
-    public function TimeUnit()
+    /**
+     * @return HasOne
+     */
+    public function TimeUnit(): HasOne
     {
         return $this->hasOne(TimeUnit::class);
     }

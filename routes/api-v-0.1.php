@@ -19,9 +19,13 @@ Route::middleware('auth:api')->get('/user', static function (Request $request) {
 });
 
 Route::apiResources([
-   'calendars'=>'CalendarController',
-   'time-units'=>'TimeUnitController',
-   'teams'=>'TeamController',
+    'teams'=>'TeamController',
+    'places'=>'PlaceController',
+    'events'=>'EventController',
+    'slots'=>'SlottController',
+    'calendars'=>'CalendarController',
+    'time-units'=>'TimeUnitController',
+'appointments'=>'AppointmentController',
 ]);
 
 Route::any('/', 'SocialAuthController@redirect');

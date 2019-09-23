@@ -3,55 +3,48 @@
 namespace App\Models;
 
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Appointment extends ApiModel
 {
     /**
-     * Defines the relationship
-     *
-     * @return mixed
+     *   @return HasMany
      */
-    public function Calendar()
+    public function Calendar() : HasMany
     {
-        return $this->belongsTo(Calendar::class);
+        return $this->hasMany(Calendar::class);
     }
 
     /**
-     * Defines the relationship
-     *
-     * @return mixed
+     * @return BelongsTo
      */
-    public function booker()
+    public function organizer() : BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
     /**
-     * Defines the relationship
-     *
-     * @return mixed
+     * @return HasMany
      */
-    public function Attendees()
+    public function Attendees() : HasMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->hasMany(User::class);
     }
 
     /**
-     * Has a defined quantity of slots
-     *
-     * @return mixed
+     * @return HasMany
      */
-    public function slots()
+    public function slots() : HasMany
     {
         return $this->hasMany(Slot::class);
     }
 
     /**
-     * Has a defined place
-     *
-     * @return mixed
+     * @return BelongsTo
      */
-    public function place()
+    public function event() : BelongsTo
     {
-        return $this->hasOne(Place::class);
+        return $this->belongsTo(Event::class);
     }
 }

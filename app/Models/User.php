@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'email_verified_at'
+        'name', 'email', 'password', 'email_verified_at', 'available_time',
     ];
 
     /**
@@ -42,7 +42,7 @@ class User extends Authenticatable implements MustVerifyEmail
     ];
 
     /**
-     * Defines the relationship between user and socialprovider table
+     * Defines the relationship between user and social provider table
      *
      * @return HasMany
      */
@@ -62,13 +62,27 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Defines the relationship between user and appointments
-     *
-     * @return HasManyThrough
+     * @return HasMany
      */
-    public function Appointment(): HasManyThrough
+    public function Appointment(): HasMany
     {
-        return $this->hasManyThrough(Appointment::class, Calendar::class);
+        return $this->hasMany(Appointment::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function slot(): HasOne
+    {
+        return $this->hasOne(Slot::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function time(): HasMany
+    {
+        return $this->hasMany(TimeUnit::class);
     }
 
     /**

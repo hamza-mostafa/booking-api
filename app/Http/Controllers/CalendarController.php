@@ -51,10 +51,11 @@ class CalendarController extends Controller
      */
     public function index(Request $request) : Response
     {
-        $orderBy = $request->orderBy ?? 'id';
-        $sort = $request->sort ?? 'desc';
-        $itemsPerPage = $request->itemsPerPage ?? '15';
-        return $this->calendar->paginate($orderBy, $sort, $itemsPerPage);
+        return $this->calendar->paginate(
+            $request->orderBy ?? 'id',
+            $request->sort ?? 'desc',
+            $request->itemsPerPage ?? '15'
+        );
     }
 
     /**

@@ -2,10 +2,10 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\Models\EventHosting;
+use App\Models\Event;
 use Faker\Generator as Faker;
 
-$factory->define(EventHosting::class, function (Faker $faker) {
+$factory->define(Event::class, function (Faker $faker) {
     return [
         //
     ];

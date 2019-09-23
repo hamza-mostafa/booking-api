@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Abstracts\AppointmentRepositoryInterface;
+use App\Repositories\Concretes\AppointmentRepository;
 use App\Repositories\Concretes\CalendarRepository;
 use App\Repositories\Abstracts\CalendarRepositoryInterface;
 use App\Repositories\Concretes\TeamRepository;
@@ -17,11 +19,12 @@ class ApiRepositoriesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register() : void
     {
         $this->app->bind(TimeUnitRepositoryInterface::class, TimeUnitRepository::class);
         $this->app->bind(TeamRepositoryInterface::class, TeamRepository::class);
         $this->app->bind(CalendarRepositoryInterface::class, CalendarRepository::class);
+        $this->app->bind(AppointmentRepositoryInterface::class, AppointmentRepository::class);
     }
 
     /**
@@ -29,7 +32,7 @@ class ApiRepositoriesServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot() : void
     {
         //
     }

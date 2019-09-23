@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-class EventHostingObserver
+class EventObserver
 {
     //
 }
